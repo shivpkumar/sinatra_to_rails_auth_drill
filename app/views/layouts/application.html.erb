@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsAuth</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if current_user %> 
+  <%= link_to "Sign Out", sign_out_path  %>
+  <% else %>
+  <%= link_to "Login", new_session_path %>
+  <%= link_to "Sign Up", new_user_path %>
+  <% end %>
+  <div class="messages">
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |key, value| %>
+        <p class="errors"><%= key %> <%= value %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>
